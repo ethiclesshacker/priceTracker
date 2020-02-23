@@ -1,33 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
+import csv
 
-link = "https://www.flipkart.com/moto-e6s-polished-graphite-64-gb/p/itm13d6688c18a87?pid=MOBFGB3JBBGZGG58&lid=LSTMOBFGB3JBBGZGG58SIVC3B&fm=neo%2Fmerchandising&iid=M_e1f0c00b-f0e5-461e-b75a-93b6a2e419af_26.T1P4LNCYM0H6&ssid=8penlqxwlc0000001582285094620&otracker=hp_omu_Latest%2BLaunches_4_8.dealCard.OMU_Latest%2BLaunches_T1P4LNCYM0H6_5&otracker1=hp_omu_WHITELISTED_neo%2Fmerchandising_Latest%2BLaunches_NA_dealCard_cc_4_NA_view-all_5&cid=T1P4LNCYM0H6"
-
-def getPrice(link):
-    r = requests.get(link)
-    html = r.text
-    soup = BeautifulSoup(html,"html.parser")
-    price = soup.find("div", {"class": "_1vC4OE _3qQ9m1"})
-    price = price.contents[0]
-    price = price.replace("₹","")
-    price = price.replace(",","")
-    price = (float(price))
-
-    return price
-
-def getStorage(link):
-    r = requests.get(link)
-    html = r.text
-    soup = BeautifulSoup(html,"html.parser")
-    tableHeadings = soup.find_all("div", {"class": "_2lzn0o"})
-    for tH in tableHeadings:
-        print(tH.contents[0])
-
-getStorage(link)
+from Flipkart import Flipkart
 
 
+# Sample how to run Flipkart Module
 
+ftry = Flipkart("https://www.flipkart.com/realme-x-space-blue-128-gb/p/itmfgybqzcgbxs26?pid=MOBFGYBQKYA5Y7HG&lid=LSTMOBFGYBQKYA5Y7HG7OS3JD&fm=neo%2Fmerchandising&iid=M_68031506-76e1-4de2-9dc5-8d7e4e16da78_18.GEIZE4KI3G8U&ppt=hp&ppn=hp&ssid=jvhwywiapc0000001582468462771&otracker=hp_omu_Dual%2BCamera%2BPhone_3_11.dealCard.OMU_Dual%2BCamera%2BPhone_GEIZE4KI3G8U_7&otracker1=hp_omu_WHITELISTED_neo%2Fmerchandising_Dual%2BCamera%2BPhone_NA_dealCard_cc_3_NA_view-all_7&cid=GEIZE4KI3G8U")
 
-# price = "_1vC4OE _3qQ9m1"
-# tableHeadings = "_2lzn0o"
-# features(all types) = "_3YhLQA"
+ftry.getPrice()
+print(ftry.price)
+
+# Sample over
