@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+from time import sleep
 
-class Flipkart:
+class Product:
 
     def __init__(self,link):
         r = requests.get(link)
@@ -41,3 +42,28 @@ fl.getFeatures()
 # features(all types) = "_3YhLQA"
 
 """
+
+
+def search(terms):
+    # terms = "mobile phones"
+    terms = terms.replace(" ","+")
+    fLink = []
+
+    for i in range(1,5):
+        link = f"https://www.flipkart.com/search?q={terms}&otracker=start&page={i}"
+        r = requests.get(link)
+        soup = BeautifulSoup(r.text,"html.parser")
+        links = soup.find_all("a",{"class":"_31qSD5"})
+        for link in links:
+            l = link["href"]
+            fLink.append(f"https://www.flipkart.com{l}")
+
+        sleep(1)
+    return fLink
+
+
+# links = search("mobile phones")
+
+# for link in links:
+#     print(link)
+
