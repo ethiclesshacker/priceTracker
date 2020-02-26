@@ -49,7 +49,7 @@ def search(terms):
     terms = terms.replace(" ","+")
     fLink = []
 
-    for i in range(1,5):
+    for i in range(1,51):
         link = f"https://www.flipkart.com/search?q={terms}&otracker=start&page={i}"
         r = requests.get(link)
         soup = BeautifulSoup(r.text,"html.parser")
