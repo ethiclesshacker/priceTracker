@@ -20,8 +20,13 @@ class Product:
         self.price = (float(price))
 
     def getFeatures(self):
-        self.features = self.soup.find_all("li", {"class": "_3YhLQA"})
+        self.featuresALL = self.soup.find_all("li", {"class": "_3YhLQA"})
         self.featureNames = self.soup.find_all("td", {"class": "_3-wDH3 col col-3-12"})
+
+        self.feautures = dict()
+
+        for i in range(len(self.featureNames)):
+            self.feautures[self.featureNames[i].contents[0]] = self.featuresALL[i].contents[0]
 
     # div Class id's for Flipkart:
     # price = "_1vC4OE _3qQ9m1"
