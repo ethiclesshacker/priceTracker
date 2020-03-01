@@ -12,12 +12,18 @@ class Product:
     def printPage(self):
         print(self.soup.prettify())
 
+    def getName(self):
+        name = self.soup.find("span",{"class":"_35KyD6"})
+        name = name.contents[0]
+        self.companyName = name.split()[0]
+
+
     def getPrice(self):
         price = self.soup.find("div", {"class": "_1vC4OE _3qQ9m1"})
         price = price.contents[0]
         price = price.replace("₹","")
         price = price.replace(",","")
-        self.price = (float(price))
+        self.price = (int(price))
 
     def getFeatures(self):
         self.featuresALL = self.soup.find_all("li", {"class": "_3YhLQA"})
@@ -47,7 +53,5 @@ def search(terms):
         for link in links:
             l = link["href"]
             fLink.append(f"https://www.flipkart.com{l}")
-
         sleep(1)
     return fLink
-
