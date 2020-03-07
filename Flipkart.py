@@ -17,7 +17,6 @@ class Product:
         name = name.contents[0]
         self.companyName = name.split()[0]
 
-
     def getPrice(self):
         price = self.soup.find("div", {"class": "_1vC4OE _3qQ9m1"})
         price = price.contents[0]
@@ -38,7 +37,6 @@ class Product:
     # price = "_1vC4OE _3qQ9m1"
     # tableHeadings = "_2lzn0o"
     # features(all types) = "_3YhLQA"
-
 
 
 def search(terms):
