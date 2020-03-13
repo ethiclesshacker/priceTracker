@@ -70,3 +70,7 @@ for link in links:
 with open("phoneDetails2.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerows(data)
+
+
+
+
