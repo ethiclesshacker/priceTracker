@@ -3,10 +3,10 @@ import numpy as np
 import sklearn
 from sklearn import linear_model
 from sklearn import preprocessing
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 from matplotlib import style
 import pickle
-
 
 data = pd.read_csv("phoneDetails.csv")
 data = data.drop(["Internet Connectivity 4G"],1)
@@ -22,21 +22,20 @@ predict = "Price"
 X = data.drop([predict],1)
 y = data[predict]
 
-max = 0 
-acc = 0
+scaler = StandardScaler().fit(X)
+rescaledX = scaler.transform(X)
 
-for _ in range(1000):
-    x_train , x_test , y_train , y_test = sklearn.model_selection.train_test_split(X,y, test_size=0.2)
+acc = 0 
+max = 0
+for i in range(100):
+    print(i)
+    x_train , x_test , y_train , y_test = sklearn.model_selection.train_test_split(rescaledX,y, test_size=0.2)
 
-    
-    model = linear_model.LinearRegression()
+    model = linear_model.LogisticRegression(max_iter=4000)
 
     model.fit(x_train,y_train)
     acc = model.score(x_test,y_test)
-
     if(acc>max):
         max = acc
-        # with open("linearRegression2.pickle","wb") as f:
-        #     pickle.dump(model,f)
 
-print("Linear Max = ", max*100)
+print("Logistic Val = ", max*100)
