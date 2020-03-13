@@ -27,7 +27,7 @@ rescaledX = scaler.transform(X)
 
 acc = 0 
 max = 0
-for i in range(100):
+for i in range(10):
     print(i)
     x_train , x_test , y_train , y_test = sklearn.model_selection.train_test_split(rescaledX,y, test_size=0.2)
 
