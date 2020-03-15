@@ -19,7 +19,7 @@ def numifyStorage(data):
         val = re.findall(r'\d+', data)[0]
         if("GB" in data):
             return val
-        if("MB" in val):
+        if("MB" in data):
             return (val/1024)
     except:
         return 0
@@ -30,12 +30,12 @@ data.append(["Company", "RAM", "Storage", "Front Camera", "Back Camera",
              "Battery Capacity", "Internet Connectivity 4G", "Price"])
 
 links = Flipkart.search("mobile phones")
-print("Links done...")
+print("Link Collection Done...")
 
 count = 1
 c = 1
 for link in links:
-    print(c)
+    print("Link no. : ",c)
     c = c + 1
     try:
         product = Flipkart.Product(link)
@@ -62,6 +62,7 @@ for link in links:
     except:
         if count <= 5:
             time.sleep(180)
+            print("Sleeping....",count)
             count = count + 1
         else:
             continue
@@ -70,7 +71,3 @@ for link in links:
 with open("phoneDetails2.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerows(data)
-
-
-
-
