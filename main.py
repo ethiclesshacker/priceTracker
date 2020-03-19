@@ -1,8 +1,5 @@
-import requests
-from bs4 import BeautifulSoup
 import csv
 import re
-import json
 import Flipkart
 import time
 
@@ -31,6 +28,9 @@ data.append(["Company", "RAM", "Storage", "Front Camera", "Back Camera",
 
 links = Flipkart.search("mobile phones")
 print("Link Collection Done...")
+
+with open("links.txt","w") as f:
+    f.write(links)
 
 count = 1
 c = 1
@@ -61,8 +61,8 @@ for link in links:
 
     except:
         if count <= 5:
-            time.sleep(180)
             print("Sleeping....",count)
+            time.sleep(180)
             count = count + 1
         else:
             continue

@@ -39,18 +39,22 @@ class Product:
     # features(all types) = "_3YhLQA"
 
 
+
 def search(terms):
     terms = terms.replace(" ","+")
     fLink = []
-
+    data = []
     for i in range(1,51):
-        print("Page no. : ",i)
         link = f"https://www.flipkart.com/search?q={terms}&otracker=start&page={i}"
         r = requests.get(link)
+        print("Page no. : ",i)
         soup = BeautifulSoup(r.text,"html.parser")
         links = soup.find_all("a",{"class":"_31qSD5"})
         for link in links:
             l = link["href"]
             fLink.append(f"https://www.flipkart.com{l}")
+        data.append(r)
         sleep(1)
+
+    print(data)
     return fLink
