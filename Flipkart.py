@@ -43,7 +43,6 @@ class Product:
 def search(terms):
     terms = terms.replace(" ","+")
     fLink = []
-    data = []
     for i in range(1,51):
         link = f"https://www.flipkart.com/search?q={terms}&otracker=start&page={i}"
         r = requests.get(link)
@@ -53,8 +52,5 @@ def search(terms):
         for link in links:
             l = link["href"]
             fLink.append(f"https://www.flipkart.com{l}")
-        data.append(r)
         sleep(1)
-
-    print(data)
     return fLink

@@ -13,11 +13,11 @@ def numify(data):
 def numifyStorage(data):
     data = data.upper()
     try:
-        val = re.findall(r'\d+', data)[0]
+        val = float(re.findall(r'\d+', data)[0])
         if("GB" in data):
             return val
         if("MB" in data):
-            return (val/1024)
+            return (float(val/1024))
     except:
         return 0
     return 0
@@ -30,7 +30,7 @@ links = Flipkart.search("mobile phones")
 print("Link Collection Done...")
 
 with open("links.txt","w") as f:
-    f.write(links)
+    f.write("\n".join(links))
 
 count = 1
 c = 1
