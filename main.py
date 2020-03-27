@@ -68,6 +68,6 @@ for link in links:
             continue
 
 
-with open("phoneDetails2.csv", "w", newline="") as f:
+with open("phoneDetails2403.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerows(data)
